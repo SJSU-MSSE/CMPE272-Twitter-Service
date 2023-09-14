@@ -5,6 +5,7 @@ import requests
 
 app = Flask(__name__)
 
+#TODO: Change config to envirnment variables
 consumer_key = config.API_KEY
 consumer_secret = config.API_KEY_SECRET
 access_token = config.ACCESS_TOKEN
@@ -12,52 +13,57 @@ access_token_secret = config.ACCESS_TOKEN_SECRET
 bearer_token = config.BEARER_TOKEN
 
 # Authenticate with Twitter
-# auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-# auth.set_access_token(access_token, access_token_secret)
-# api = tweepy.API(auth)
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
 
-client = tweepy.Client(bearer_token=bearer_token,
-                    consumer_key=consumer_key,
-                    consumer_secret=consumer_secret,
-                    access_token=access_token,
-                    access_token_secret=access_token_secret)
+client = tweepy.Client(
+    bearer_token=bearer_token,
+    consumer_key=consumer_key,
+    consumer_secret=consumer_secret,
+    access_token=access_token,
+    access_token_secret=access_token_secret
+)
 
-@app.route('/')
-def index():
-    return "<h1>Welcome to KASH - Twitter Service API</h1>"
+"""
+The `create_tweet` function is a route in a Python Flask application that handles a POST request to
+create a new tweet.
 
+:return: The code is returning a JSON response with a success message and the response from the
+client's create_tweet method if the tweet is created successfully. If there is an exception, it
+returns a JSON response with an error message.
+"""
 @app.route('/create_tweet', methods=['POST'])
 def create_tweet():
     try:
         tweet_text = request.json['tweet_text']
-        response = client.create_tweet(text=tweet_text)
-        return jsonify({'message': 'Tweet created successfully', 'response': response}), 201
+        if tweet_text != "":
+            response = client.create_tweet(text=tweet_text)
+            return jsonify({'message': 'Tweet created successfully', 'response': response}), 201 # Created
+        return jsonify({'error': 'Tweet Text is missing'}), 204 # No Content 
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e)}), e.response.status_code
 
-@app.route('/delete/<tweet_id>')
+
+"""
+This function deletes a tweet with the specified tweet_id and returns a success message if the
+deletion is successful.
+
+:param tweet_id: The `tweet_id` parameter is the unique identifier of the tweet that needs to be
+deleted. It is passed as a parameter in the URL route `/delete/<tweet_id>`
+
+:return: a JSON response. If the tweet is deleted successfully, it returns a JSON object with a
+message indicating the successful deletion and the response from the client. If there is an
+exception, it returns a JSON object with an error message and the status code of the exception
+response.
+"""
+@app.route('/delete/<tweet_id>', methods=['DELETE'])
 def delete_tweet(tweet_id):
     try:
         response = client.delete_tweet(id=tweet_id)
-        return jsonify({'message': 'Tweet deleted successfully', 'response': response}), 200
+        return jsonify({'message': 'Tweet deleted successfully', 'response': response}), 200 # Ok
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-# @app.route('/api')
-# def api_auth():
-#     try:
-#         api.verify_credentials()
-#         print ('Successful Authentication')
-#     except:
-#         print ('Failed authentication')
-#         raise
-
-#     user = api.get_user(screen_name="Harshil_V330")
-#     # print(user)
-#     # print()
-#     # print(api.home_timeline())
-#     return (user.name)
+        return jsonify({'error': str(e)}), e.response.status_code
 
 if __name__ == "__main":
     app.run(debug=True)
