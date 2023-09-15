@@ -5,7 +5,6 @@ import requests
 
 app = Flask(__name__)
 
-#TODO: Change config to envirnment variables
 consumer_key = config.API_KEY
 consumer_secret = config.API_KEY_SECRET
 access_token = config.ACCESS_TOKEN
@@ -33,7 +32,7 @@ create a new tweet.
 client's create_tweet method if the tweet is created successfully. If there is an exception, it
 returns a JSON response with an error message.
 """
-@app.route('/create_tweet', methods=['POST'])
+@app.route('/create', methods=['POST'])
 def create_tweet():
     try:
         tweet_text = request.json['tweet_text']
@@ -42,7 +41,7 @@ def create_tweet():
             return jsonify({'message': 'Tweet created successfully', 'response': response}), 201 # Created
         return jsonify(), 204 # No Content 
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e)}), 400
 
 
 """
