@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
 import tweepy
 import config
-import requests
 
 app = Flask(__name__)
 
@@ -10,11 +9,6 @@ consumer_secret = config.API_KEY_SECRET
 access_token = config.ACCESS_TOKEN
 access_token_secret = config.ACCESS_TOKEN_SECRET
 bearer_token = config.BEARER_TOKEN
-
-# Authenticate with Twitter
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
-api = tweepy.API(auth)
 
 client = tweepy.Client(
     bearer_token=bearer_token,
@@ -58,8 +52,6 @@ response.
 """
 @app.route('/delete/<tweet_id>', methods=['DELETE'])
 def delete_tweet(tweet_id):
-    # if type(tweet_id) != int or type(tweet_id) != float:
-    #     return jsonify({'error': "Bad Request - Tweet ID is not a number"}), 400
     try: 
         response = client.delete_tweet(id=tweet_id)
         return jsonify({'message': 'Tweet deleted successfully', 'response': response}), 200 # Ok
