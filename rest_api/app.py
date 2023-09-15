@@ -40,9 +40,9 @@ def create_tweet():
         if tweet_text != "":
             response = client.create_tweet(text=tweet_text)
             return jsonify({'message': 'Tweet created successfully', 'response': response}), 201 # Created
-        return jsonify({'error': 'Tweet Text is missing'}), 204 # No Content 
+        return jsonify(), 204 # No Content 
     except Exception as e:
-        return jsonify({'error': str(e)}), e.response.status_code
+        return jsonify({'error': str(e)}), 500
 
 
 """
@@ -59,11 +59,14 @@ response.
 """
 @app.route('/delete/<tweet_id>', methods=['DELETE'])
 def delete_tweet(tweet_id):
-    try:
+    # if type(tweet_id) != int or type(tweet_id) != float:
+    #     return jsonify({'error': "Bad Request - Tweet ID is not a number"}), 400
+    try: 
         response = client.delete_tweet(id=tweet_id)
         return jsonify({'message': 'Tweet deleted successfully', 'response': response}), 200 # Ok
     except Exception as e:
-        return jsonify({'error': str(e)}), e.response.status_code
+        status_code = e.response.status_code
+        return jsonify({'error': str(e)}), status_code
 
 if __name__ == "__main":
     app.run(debug=True)
