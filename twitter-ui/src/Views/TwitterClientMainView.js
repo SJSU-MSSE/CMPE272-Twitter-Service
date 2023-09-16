@@ -6,7 +6,8 @@ function TwitterClientMainView() {
     const [items, setItems] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const [activeSegment, setActiveSegment] = useState('retrieve'); // State for active segment
-    
+    const [message, setMessage] = useState(null);
+
     const handleChange = (e) => {
         setInputValue(e.target.value);
     };
@@ -15,15 +16,30 @@ function TwitterClientMainView() {
         if (e.key === 'Enter' && inputValue.trim() !== '') {
             if (activeSegment === 'create') {
                 // Create tweet with body should go here
-                let result = await createTweet(inputValue)
-                setItems(prevItems => [...prevItems, inputValue.trim()]);
-                setInputValue('');
+                try {
+                    const result = await createTweet(inputValue)
+                    console.log(result)
+                    setMessage('Tweet created successfully!');
+                    setItems(prevItems => [...prevItems, result.response['id']]);
+                    setInputValue('');
+                } catch (error) {
+                    setMessage(`${error.message}`);
+                }
                 
             } else if (activeSegment === 'delete') {
-                let result = await deleteTweet(inputValue)
-                setItems(prevItems => [...prevItems, inputValue.trim()]);
-                setInputValue('');
+                try {
+                    const result = await deleteTweet(inputValue)
+                    setMessage('Tweet deleted successfully!');
+                    
+                    setInputValue('');
+                } catch (error) {
+                    setMessage(`${error.message}`);
+                }
+                
+                
             }
+        } else {
+            setMessage('');
         }
     };
 
@@ -44,12 +60,12 @@ function TwitterClientMainView() {
             <div  className={`segment-option ${activeSegment === 'delete' ? 'active' : ''}`}
                 onClick={() => {
                 setActiveSegment('delete');
-                setItems([]);  // For this example, the 'Delete' segment simply clears all items
+                // For this example, the 'Delete' segment simply clears all items
             }} >
                 Delete
             </div>
         </div>
-
+        {message && <p>{message}</p>}
         {activeSegment === 'create' && (
             <input 
                 type="text" 

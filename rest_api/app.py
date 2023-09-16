@@ -44,7 +44,7 @@ def create_tweet():
         tweet_text = request.json['tweet_text']
         if tweet_text != "":
             response = client.create_tweet(text=tweet_text)
-            return jsonify({'message': 'Tweet created successfully', 'response': response}), 201 # Created
+            return jsonify({'message': 'Tweet created successfully', 'response': response[0]}), 201 # Created
         return jsonify(), 204 # No Content 
     except Exception as e:
         return jsonify({'error': str(e)}), 400
