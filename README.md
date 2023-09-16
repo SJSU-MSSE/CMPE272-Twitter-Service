@@ -1,7 +1,14 @@
 # CMPE272-Twitter-Service
 
-## Backend
+## Frontend
+@ahmedzaytounsjsu
+@mkarthikkamath
 
+---
+## Backend
+#### Authors:
+@Harshil-V
+@sanjaysathyarapu
 ### Tools / Technologies 
 - Flask
 - unittest
@@ -14,13 +21,19 @@
 ```bash
 $ python -m venv venv
 ```
-3. Install the requirements from `requirements.txt`
+3. Activate virtual envirnment
+```bash
+$ source venv/bin/activate # For Linux
+$ source venv/Scripts/activate # For Windows
+```
+4. Install the requirements from `requirements.txt`
 ```bash
 $ pip install -r requirements.txt
 ```
-4. Add config.py file to the project which holds the keys, secrets and tokens
+1. Add config.py file to the project which holds the keys, secrets and tokens
    - the config.py file is avaible on the Teams Share Google Drive Folder
-5. Run the application
+2. Run the application
 ```bash
-$ flask --app app.py run --debug
+$ flask run #run without debug
+$ flask --app app.py run --debug #run in debug mode with hotreload
 ```
