@@ -8,8 +8,12 @@ Sanjay Sathyarapu - @sanjaysathyarapu
 from flask import Flask, jsonify, request
 import tweepy
 import config
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+
+# `CORS(app)` is enabling Cross-Origin Resource Sharing (CORS) for the Flask application.
+CORS(app)
 
 consumer_key = config.API_KEY
 consumer_secret = config.API_KEY_SECRET
@@ -70,4 +74,4 @@ def delete_tweet(tweet_id):
         return jsonify({'error': str(e)}), status_code
 
 if __name__ == "__main":
-    app.run(debug=True)
+    app.run()

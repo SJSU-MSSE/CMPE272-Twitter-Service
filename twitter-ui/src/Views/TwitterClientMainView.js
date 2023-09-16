@@ -15,12 +15,14 @@ function TwitterClientMainView() {
         if (e.key === 'Enter' && inputValue.trim() !== '') {
             if (activeSegment === 'create') {
                 // Create tweet with body should go here
-                let result = await createTweet({  })
+                let result = await createTweet(inputValue)
                 setItems(prevItems => [...prevItems, inputValue.trim()]);
                 setInputValue('');
                 
             } else if (activeSegment === 'delete') {
-                
+                let result = await deleteTweet(inputValue)
+                setItems(prevItems => [...prevItems, inputValue.trim()]);
+                setInputValue('');
             }
         }
     };
