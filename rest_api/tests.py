@@ -9,7 +9,7 @@ class TestCreateTweetRoute(unittest.TestCase):
         self.app = app.test_client()
 
     def test_create_tweet_success(self):
-        tweet_text = 'This is a unittest tweet 3!'
+        tweet_text = 'Tweet Test'
         data = {'tweet_text': tweet_text}
         headers = {'Content-Type': 'application/json'}
 
@@ -51,9 +51,17 @@ class TestDeleteTweetRoute(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(data['message'], 'Tweet deleted successfully')
+
+    def test_delete_tweet_failure(self):
+        tweet_id = 1702430661980864576  # Replace with an valid tweet_id but permission denied
+        response = self.app.delete(f'/delete/{tweet_id}')
+        data = json.loads(response.get_data(as_text=True))
+
+        self.assertEqual(response.status_code, 403) 
+        self.assertIn('error', data)
    
     def test_delete_tweet_non_numeric_id(self):
-        tweet_id = 'qwerty'  # Provided a non-numeric tweet_id
+        tweet_id = 'qwerty'
         response = self.app.delete(f'/delete/{tweet_id}')
         data = json.loads(response.get_data(as_text=True))
 
