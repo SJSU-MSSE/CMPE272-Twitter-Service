@@ -1,6 +1,7 @@
 # CMPE272-Twitter-Service
 
 ## Frontend
+#### Authors:
 @ahmedzaytounsjsu
 @mkarthikkamath
 
