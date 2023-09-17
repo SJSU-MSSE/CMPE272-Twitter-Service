@@ -30,13 +30,10 @@ function TwitterClientMainView() {
                 try {
                     const result = await deleteTweet(inputValue)
                     setMessage('Tweet deleted successfully!');
-                    
                     setInputValue('');
                 } catch (error) {
                     setMessage(`${error.message}`);
-                }
-                
-                
+                }   
             }
         } else {
             setMessage('');
@@ -72,7 +69,7 @@ function TwitterClientMainView() {
                 value={inputValue} 
                 onChange={handleChange} 
                 onKeyPress={handleKeyPress} 
-                placeholder="Type and press Enter" />
+                placeholder="Enter a Tweet Message to post" />
         )}
 
         {activeSegment === 'delete' && (
@@ -81,7 +78,7 @@ function TwitterClientMainView() {
                 value={inputValue} 
                 onChange={handleChange} 
                 onKeyPress={handleKeyPress} 
-                placeholder="Type and press Enter" />
+                placeholder="Type a Tweet ID to delete" />
         )}
         {/* Content based on Segment */}
         {activeSegment === 'retrieve' && (
@@ -91,11 +88,6 @@ function TwitterClientMainView() {
             ))}
             </ul>
         )}
-
-        
-
-        {/* For this example, 'Delete' just clears the list when clicked. 
-            You can modify this based on your actual use-case. */}
 
         </div>
     );
