@@ -4,6 +4,16 @@
 @ahmedzaytounsjsu
 @mkarthikkamath
 
+### Tools / Technologies 
+- React JS 
+
+### Setup Instructions
+1. Clone the repo and cd into `/twitter-ui`
+2. Run the cmd
+```bash
+$ npm start
+```
+
 ---
 ## Backend
 #### Authors:

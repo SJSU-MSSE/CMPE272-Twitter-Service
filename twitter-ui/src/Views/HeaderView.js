@@ -19,7 +19,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div>   
       <h1>My List App</h1>
       <input 
         type="text" 
@@ -33,7 +33,7 @@ function App() {
           <li key={index}>{item}</li>
         ))}
       </ul>
-    </div>
+  </div>
   );
 }
 

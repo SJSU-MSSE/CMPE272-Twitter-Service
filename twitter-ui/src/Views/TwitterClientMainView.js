@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "../App.css"
 import { createTweet, deleteTweet } from '../APIs/APIs';
+import Navbar from "./Navbar";
 
 function TwitterClientMainView() {
     const [items, setItems] = useState([]);
@@ -42,8 +43,9 @@ function TwitterClientMainView() {
 
     return (
         <div className="App">
+        <Navbar> </Navbar>
         <h1>My List App</h1>
-
+      
         {/* Segment Control */}
         <div className="segment-control">
             <div className={`segment-option ${activeSegment === 'retrieve' ? 'active' : ''}`}
@@ -69,7 +71,7 @@ function TwitterClientMainView() {
                 value={inputValue} 
                 onChange={handleChange} 
                 onKeyPress={handleKeyPress} 
-                placeholder="Enter a Tweet Message to post" />
+                placeholder="Enter a Tweet message to post" />
         )}
 
         {activeSegment === 'delete' && (
