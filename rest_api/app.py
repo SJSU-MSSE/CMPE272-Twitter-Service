@@ -38,6 +38,8 @@ def create_tweet():
     :return: The code is returning a JSON response with a success message and the response from the
     client's create_tweet method if the tweet is created successfully. If there is an exception, it
     returns a JSON response with an error message.
+
+    @author: Harshil Vyas
     """
 
     try:
@@ -64,6 +66,8 @@ def delete_tweet(tweet_id):
     message indicating the successful deletion and the response from the client. If there is an
     exception, it returns a JSON object with an error message and the status code of the exception
     response.
+
+    @author: Harshil Vyas
     """
 
     try: 
