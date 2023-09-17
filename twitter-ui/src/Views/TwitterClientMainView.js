@@ -19,7 +19,6 @@ function TwitterClientMainView() {
                 // Create tweet with body should go here
                 try {
                     const result = await createTweet(inputValue)
-                    console.log(result)
                     setMessage('Tweet created successfully!');
                     setItems(prevItems => [...prevItems, result.response['id']]);
                     setInputValue('');
