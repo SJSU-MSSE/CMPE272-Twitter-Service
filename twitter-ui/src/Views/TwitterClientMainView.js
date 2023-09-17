@@ -31,6 +31,7 @@ function TwitterClientMainView() {
                 try {
                     const result = await deleteTweet(inputValue)
                     setMessage('Tweet deleted successfully!');
+                    setItems(items.filter(a => a !== inputValue.trim()))
                     setInputValue('');
                 } catch (error) {
                     setMessage(`${error.message}`);
