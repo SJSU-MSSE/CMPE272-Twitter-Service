@@ -3,6 +3,13 @@ import Navbar from './Navbar'
 
 import '../styles/Navbar.css';
 
+/**
+ * @Author: Miyar Karthik Kamath
+ * The AboutView function returns a React component that displays information about a web application
+ * and its team members.
+ * @returns The AboutView component is returning a JSX element, which is a div containing the content
+ * of the About page.
+ */
 const AboutView = () => {
   return (
     <div className="App">

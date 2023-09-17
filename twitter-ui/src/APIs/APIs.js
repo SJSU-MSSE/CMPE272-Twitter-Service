@@ -1,5 +1,9 @@
 const BASE_URL = 'http://127.0.0.1:5000'; // Base server url
 
+/**
+ * @Author: Ahmed Zaytoun
+ * This is a post method that handles creation of a tweet by consuming Twitter API
+ */
 export const createTweet = async (tweet) => {
     try {
         const response = await fetch(`${BASE_URL}/create`, {
@@ -19,6 +23,10 @@ export const createTweet = async (tweet) => {
     }
 };
 
+/**
+ * @Author: Miyar Karthik Kamath
+ * This is a delete method that handles deletion of a tweet by consuming Twitter API by passing the Twitter ID
+ */
 export const deleteTweet = async (tweetId) => {
     try {
         const response = await fetch(`${BASE_URL}/delete/${tweetId}`, {

@@ -3,6 +3,14 @@ import "../App.css"
 import { createTweet, deleteTweet } from '../APIs/APIs';
 import Navbar from "./Navbar";
 
+
+/**
+ * Author: Ahmed Zaytoun
+ * The `TwitterClientMainView` function is a React component that renders a main view for a Twitter
+ * client application, allowing users to retrieve, create, and delete tweets.
+ * @returns The TwitterClientMainView component is returning a JSX element, which represents the
+ * structure and content of the component's UI.
+ */
 function TwitterClientMainView() {
     const [items, setItems] = useState([]);
     const [inputValue, setInputValue] = useState('');
@@ -44,7 +52,7 @@ function TwitterClientMainView() {
     return (
         <div className="App">
         <Navbar> </Navbar>
-        <h1>My List App</h1>
+        <h1>Twitter Services</h1>
       
         {/* Segment Control */}
         <div className="segment-control">
@@ -52,7 +60,7 @@ function TwitterClientMainView() {
                 onClick={() => {
                     setActiveSegment('retrieve'); 
                     setMessage("")}} >
-                Retrieve
+                Tweet IDs Created
             </div>
             <div  className={`segment-option ${activeSegment === 'create' ? 'active' : ''}`}
                 onClick={() => {

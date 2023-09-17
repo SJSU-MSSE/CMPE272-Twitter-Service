@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import '../styles/App.css';
 
+/**
+ * @Author: Ahmed Zaytoun
+ * The function `App` is a React component that renders a list app with a text input field and a list
+ * of items.
+ * @returns a JSX element, which represents the structure and content of the user interface. The
+ * returned JSX element consists of a div containing a heading, an input field, and an unordered list.
+ * The input field is bound to the `inputValue` state variable and has event handlers for `onChange`
+ * and `onKeyPress` events. The unordered list is populated with list items based on the `
+ */
 function App() {
   const [items, setItems] = useState([]); // State for the list of items
   const [inputValue, setInputValue] = useState(''); // State for the text field
