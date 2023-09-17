@@ -49,17 +49,22 @@ function TwitterClientMainView() {
         {/* Segment Control */}
         <div className="segment-control">
             <div className={`segment-option ${activeSegment === 'retrieve' ? 'active' : ''}`}
-                onClick={() => setActiveSegment('retrieve')} >
+                onClick={() => {
+                    setActiveSegment('retrieve'); 
+                    setMessage("")}} >
                 Retrieve
             </div>
             <div  className={`segment-option ${activeSegment === 'create' ? 'active' : ''}`}
-                onClick={() => setActiveSegment('create')}>
+                onClick={() => {
+                    setActiveSegment('create')
+                    setMessage("")
+                }}>
                 Create
             </div>
             <div  className={`segment-option ${activeSegment === 'delete' ? 'active' : ''}`}
                 onClick={() => {
-                setActiveSegment('delete');
-                // For this example, the 'Delete' segment simply clears all items
+                    setActiveSegment('delete');
+                    setMessage("")
             }} >
                 Delete
             </div>
