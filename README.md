@@ -1,5 +1,4 @@
 # CMPE272-Twitter-Service
-
 ## Frontend
 #### Authors:
 @ahmedzaytounsjsu
@@ -10,7 +9,11 @@
 
 ### Setup Instructions
 1. Clone the repo and cd into `/twitter-ui`
-2. Run the cmd
+2. Install the node packages
+```bash
+$ npm i
+```
+3. Run the Project
 ```bash
 $ npm start
 ```
